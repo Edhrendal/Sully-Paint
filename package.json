@@ -1,0 +1,37 @@
+{
+  "name": "sully-paint",
+  "version": "1.0.0",
+  "description": "A paint in local for Sully Group",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "testlint": "eslint"
+  },
+  "keywords": [
+    "sully",
+    "group",
+    "sully",
+    "group",
+    "paint",
+    "local",
+    "socket",
+    "socket.io",
+    "node",
+    "js",
+    "javascript"
+  ],
+  "author": "Billy VILLENA",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-standard": "^7.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.0.1"
+  },
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "express": "^4.14.1",
+    "pug": "^2.0.0-beta11",
+    "socket.io": "^1.7.3"
+  }
+}

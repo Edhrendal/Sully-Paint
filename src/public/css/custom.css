@@ -1,0 +1,53 @@
+/***** LAYOUTS *****/
+/*** FOOTER ***/
+.container {
+    margin: 20px auto 50px;
+}
+footer {
+    bottom: 0;
+    font-size: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+/***** PAGES *****/
+/*** GENERAL ***/
+
+/*** INDEX ***/
+
+/*** PAINT ***/
+/* CHATBOX */
+#chatbox {
+    background-color: #000;
+    border: 2px solid #ddd;
+    color: #fff;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    word-wrap: break-word;
+}
+#sendMessage.form-inline {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+#sendMessage.form-inline input[type="text"] {
+    width: 800px;
+}
+#sendMessage.form-inline button {
+    margin: 0 0 0 10px;
+}
+
+.connection {
+    display: block;
+    border-color: #fff;
+    border-style: solid;
+    border-radius: 0;
+    border-width: 1px 0;
+    margin: auto;
+}
+.message > .author {
+    color: #5bc0de;
+    font-weight: 700;
+}

@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title Sully - #{title}
+        block stylesheets
+            include css.pug
+    body
+        .container
+            block content
+        block footer
+            include footer.pug
+        block javascript
+            include js.pug

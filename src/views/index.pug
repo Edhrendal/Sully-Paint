@@ -1,0 +1,12 @@
+extends layouts/base
+
+block content
+    form#loginForm(method="post")
+        fieldset: legend Entrez votre nom d'utilisateur pour vous connecter...
+        .form-group
+            label(for="login") Nom d'utilisateur
+            input(type="text" class="form-control" name="login" id="login")
+        button(type="submit" class="btn btn-default") Envoyer
+
+append javascript
+    script(src="static/js/index.js")
