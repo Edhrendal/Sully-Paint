@@ -1,4 +1,4 @@
-const socket = io.connect('localhost:3000');
+const socket = io.connect('192.168.44.88:3000');
 const canvas = document.querySelector('#canvas');
 const board = canvas.getContext('2d');
 const inputColorBrush = document.querySelector('#colorBrush');
