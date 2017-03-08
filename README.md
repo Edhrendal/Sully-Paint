@@ -5,9 +5,9 @@ This project is based on [node.js](https://nodejs.org) and [socket.io](http://so
 # Installation
 * Install npm dependancies (make sure you have npm) `npm update`.
 * Change ip address for socket.io connection on the client side.
-```
+```javascript
 // src/public/js/paint.js
-1. const socket = io.connect('SERVER_IP_ADDRESS:3000')
+const socket = io.connect('SERVER_IP_ADDRESS:3000')
 ```
 * Start the server `npm start`.
 * With your web browser (**NOT IE**), go to `http:\\SERVER_IP_ADDRESS:3000`.
