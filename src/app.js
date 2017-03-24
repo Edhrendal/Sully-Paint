@@ -36,7 +36,14 @@ app.get('/paint', (req, res) => {
 io.sockets.on('connection', (socket) => {
   // Connection
   socket.on('connectionToChannel', author => {
-    console.log(`${author} is connected.`);
+    let date = new Date()
+    // Format of time
+    let hours = date.getHours()
+    hours = hours < 10 ? `0${hours}` : hours
+    let minutes = date.getMinutes()
+    minutes = minutes < 10 ? `0${minutes}` : minutes
+    date = `${date.toDateString()} - ${hours}:${minutes}`
+    console.log(`${date}: ${author} is connected.`);
     io.sockets.emit('connectedToChannel', author.trim())
     io.sockets.emit('restoreDraw', drawingStore);
   });
