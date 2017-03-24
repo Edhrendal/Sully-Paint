@@ -9,7 +9,7 @@ This project is based on [node.js](https://nodejs.org) and [socket.io](http://so
 // src/public/json/connection.js
 {
   "ip_address": "SERVER_IP_ADDRESS",
-  "port": "PORT" // 3000
+  "port": "PORT"
 }
 ```
 * Start the server `npm start`.
