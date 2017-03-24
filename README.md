@@ -5,12 +5,15 @@ This project is based on [node.js](https://nodejs.org) and [socket.io](http://so
 # Installation
 * Install npm dependancies (make sure you have npm) `npm update`.
 * Change ip address for socket.io connection on the client side.
-```javascript
-// src/public/js/paint.js
-const socket = io.connect('SERVER_IP_ADDRESS:3000')
+```json
+// src/public/json/connection.js
+{
+  "ip_address": "SERVER_IP_ADDRESS",
+  "port": "PORT" // 3000
+}
 ```
 * Start the server `npm start`.
-* With your web browser (**NOT IE**), go to `http:\\SERVER_IP_ADDRESS:3000`.
+* With your web browser (**NOT IE**), go to `http:\\SERVER_IP_ADDRESS:PORT`.
 
 # Usages
 This project is based on socket.io for the communication between the server and the client. When the client wants to make lines on the paint (canvas) or send a message to the others with the chat, he sends a specific message to the server through socket.io. Server sends the response to all clients in order to get the draw or the message on the chat.
