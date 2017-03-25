@@ -29,6 +29,7 @@
     "eslint-plugin-standard": "^2.0.1"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "escape-html": "^1.0.3",
     "express": "^4.14.1",
     "pug": "^2.0.0-beta11",

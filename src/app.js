@@ -3,13 +3,19 @@
 const http = require('http')
 const path = require('path')
 const express = require('express')
+const bodyParser = require('body-parser')
 const fs = require('fs')
 const escape = require('escape-html')
 let io = require('socket.io')
 
 const connectionFile = JSON.parse(fs.readFileSync(path.join(__dirname, './public/json/connection.json'), 'utf8'))
 const port = connectionFile.port
+// Application
 let app = express()
+// -> POST - BodyParser
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+// -> Views parameters
 app.use('/static', express.static(path.join(__dirname, './public')))
 app.set('views', path.join('./src', './views'))
 app.set('view engine', 'pug')
@@ -18,7 +24,6 @@ let server = http.Server(app)
 io = io.listen(server)
 
 // STORES
-
 let drawingStore = []
 
 // ROUTING
@@ -26,6 +31,11 @@ app.get('/', (req, res) => {
   res.render('index', {
     title: 'Authentification'
   })
+})
+
+app.post('/', (req, res) => {
+  let login = request.body.login
+  res.redirect('/paint')
 })
 
 app.get('/paint', (req, res) => {
@@ -83,4 +93,6 @@ io.sockets.on('connection', (socket) => {
   })
 })
 
-server.listen(port)
+server.listen(port, _ => {
+  console.log(`Server is listening to port ${port}`)
+})
