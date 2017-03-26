@@ -4,9 +4,8 @@ This project is based on [node.js](https://nodejs.org) and [socket.io](http://so
 
 # Installation
 * Install npm dependancies (make sure you have npm) `npm update`.
-* Change ip address for socket.io connection on the client side.
+* Change ip address for socket.io connection on the client side: [connection.json](src/public/json/connection.json)
 ```json
-// src/public/json/connection.json
 {
   "ip_address": "SERVER_IP_ADDRESS",
   "port": "PORT"
