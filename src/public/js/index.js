@@ -2,10 +2,7 @@ const form = document.querySelector('#loginForm')
 const input = document.querySelector('#login')
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault()
+  /* TODO Check login before sending to server.
 
-  let login = input.value
-  setCookie('login', login, 1)
-
-  document.location.href = '/paint'
+  let login = input.value*/
 })

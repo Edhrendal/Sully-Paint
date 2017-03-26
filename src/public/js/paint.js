@@ -84,10 +84,6 @@ fetch('static/json/connection.json')
     })
 
     // CHATBOX
-    let author = getCookie('login')
-    if (author === '') {
-      document.location.href = '/'
-    }
     socket.emit('connectionToChannel', author)
 
     let chatbox = document.querySelector('#chatbox')
