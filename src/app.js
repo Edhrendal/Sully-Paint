@@ -66,6 +66,7 @@ let loginRedirection = (req, res, next) => {
 }
 
 // STORES
+let usersStore = {}
 let drawingStore = []
 
 // ROUTING
@@ -90,24 +91,33 @@ app.get('/paint', [loginRedirection], (req, res) => {
 // SOCKET
 io.sockets.on('connection', (socket) => {
   // Connection
-  socket.on('connectionToChannel', author => {
-    let date = new Date()
-    // Format of time
-    let hours = date.getHours()
-    hours = hours < 10 ? `0${hours}` : hours
-    let minutes = date.getMinutes()
-    minutes = minutes < 10 ? `0${minutes}` : minutes
-    date = `${date.toDateString()} - ${hours}:${minutes}`
-    console.log(`${date}: ${author} is connected.`)
-    io.sockets.emit('connectedToChannel', author.trim())
+  socket.on('connectionToChannel', user => {
+    user = user.trim()
+    
+    // Check if user is already connected
+    if (typeof usersStore[user] === 'undefined') {
+      usersStore[user] = user
+      let date = new Date()
+      // Format of time
+      let hours = date.getHours()
+      hours = hours < 10 ? `0${hours}` : hours
+      let minutes = date.getMinutes()
+      minutes = minutes < 10 ? `0${minutes}` : minutes
+      date = `${date.toDateString()} - ${hours}:${minutes}`
+      console.log(`${date}: ${user} is connected.`)
+
+      io.sockets.emit('connectedToChannel', user)
+    }
+
+    io.sockets.emit('displayUsersList', usersStore)
     io.sockets.emit('restoreDraw', drawingStore)
   })
 
   // Chatbox
   socket.on('send', data => {
     let message = escape(data.message).trim()
-    let author = escape(data.author).trim()
-    io.sockets.emit('write', { message, author })
+    let user = escape(data.user).trim()
+    io.sockets.emit('write', { message, user })
   })
 
   // Paint

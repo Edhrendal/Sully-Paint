@@ -13,30 +13,50 @@ footer {
 
 /***** PAGES *****/
 /*** GENERAL ***/
-
+.table {
+    display: table;
+}
+.table-cell {
+    display: table-cell;
+}
 /*** INDEX ***/
 
 /*** PAINT ***/
 /* CHATBOX */
 #chatbox {
     background-color: #000;
-    border: 2px solid #ddd;
     color: #fff;
-    height: 400px;
+    margin-bottom: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+
+#chat_wrapper, #users_wrapper {
+    border: 2px solid #ddd;
+    vertical-align: top;
+}
+#users_wrapper {
+    width: 20%;
+}
+
+#chat, #users {
+    height: 300px;
     overflow-x: hidden;
     overflow-y: auto;
-    width: 100%;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
-#sendMessage.form-inline {
-    border: 1px solid #ddd;
-    padding: 10px;
+
+#users .title {
+    font-weight: 700;
+    margin: 10px auto;
+    text-align: center;
 }
-#sendMessage.form-inline input[type="text"] {
-    width: 800px;
-}
-#sendMessage.form-inline button {
-    margin: 0 0 0 10px;
+#users_list {
+    font-size: 16px;
+    font-weight: 700;
+    list-style: none;
+    padding: 0;
+    padding-left: 10px;
 }
 
 .connection {
@@ -50,4 +70,23 @@ footer {
 .message > .author {
     color: #5bc0de;
     font-weight: 700;
+}
+
+#sendMessage_wrapper {
+    background-color: #000;
+    border: 1px solid #ddd;
+}
+
+#sendMessage.form-inline {
+    padding: 5px;
+}
+
+#sendMessage .form-group {
+    width: 80%;
+}
+#sendMessage.form-inline input[type="text"] {
+    width: 100%;
+}
+#sendMessage.form-inline button {
+    margin: 0 0 0 5px;
 }
