@@ -116,6 +116,15 @@ fetch('static/json/connection.json')
         </div>`
     })
 
+    socket.on('displayUsersList', (usersStore) => {
+      usersList.innerHTML = ""
+      for (var user in usersStore) {
+        usersList.innerHTML =
+          `${usersList.innerHTML}
+          <li>${user}</li>`
+      }
+    })
+
     socket.on('write', (data) => {
       let date = new Date()
       // Format of time

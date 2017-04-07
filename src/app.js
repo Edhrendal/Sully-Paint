@@ -66,7 +66,7 @@ let loginRedirection = (req, res, next) => {
 }
 
 // STORES
-let usersStore = []
+let usersStore = {}
 let drawingStore = []
 
 // ROUTING
@@ -109,6 +109,7 @@ io.sockets.on('connection', (socket) => {
       io.sockets.emit('connectedToChannel', user)
     }
 
+    io.sockets.emit('displayUsersList', usersStore)
     io.sockets.emit('restoreDraw', drawingStore)
   })
 
