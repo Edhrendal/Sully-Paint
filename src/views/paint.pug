@@ -14,7 +14,13 @@ block content
             label(for="widthBrush") Taille du pinceau
             input(type="number" class="form-control" min="1" id="widthBrush" name="widthBrush" value="1")
 
-    #chatbox
+    #chatbox.table
+        .table-cell#chat_wrapper
+            #chat
+        .table-cell#users_wrapper
+            #users
+                .title En ligne
+                ul#users_list
     form#sendMessage.form-inline(method="post")
         .form-group
             label(for="message")
