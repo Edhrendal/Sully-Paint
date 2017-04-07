@@ -26,6 +26,7 @@ footer {
 #chatbox {
     background-color: #000;
     color: #fff;
+    margin-bottom: 0;
     table-layout: fixed;
     width: 100%;
 }
@@ -71,13 +72,21 @@ footer {
     font-weight: 700;
 }
 
-#sendMessage.form-inline {
+#sendMessage_wrapper {
+    background-color: #000;
     border: 1px solid #ddd;
-    padding: 10px;
+}
+
+#sendMessage.form-inline {
+    padding: 5px;
+}
+
+#sendMessage .form-group {
+    width: 80%;
 }
 #sendMessage.form-inline input[type="text"] {
-    width: 800px;
+    width: 100%;
 }
 #sendMessage.form-inline button {
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
 }
