@@ -5,6 +5,7 @@ const canvas = document.querySelector('#canvas')
 const board = canvas.getContext('2d')
 const inputColorBrush = document.querySelector('#colorBrush')
 const inputWidthBrush = document.querySelector('#widthBrush')
+let usersList = document.querySelector('#users_list')
 
 // Settings
 board.lineJoin = 'round'
@@ -84,9 +85,9 @@ fetch('static/json/connection.json')
     })
 
     // CHATBOX
-    socket.emit('connectionToChannel', author)
+    socket.emit('connectionToChannel', user)
 
-    let chatbox = document.querySelector('#chatbox')
+    let chat = document.querySelector('#chat')
     const formChatbox = document.querySelector('#sendMessage')
     const inputChatbox = document.querySelector('#message')
 
@@ -96,11 +97,11 @@ fetch('static/json/connection.json')
       let message = inputChatbox.value
       inputChatbox.value = ''
       if (message.trim() !== '') {
-        socket.emit('send', { author, message })
+        socket.emit('send', { user, message })
       }
     })
 
-    socket.on('connectedToChannel', (author) => {
+    socket.on('connectedToChannel', (user) => {
       let date = new Date()
       // Format of time
       let hours = date.getHours()
@@ -108,17 +109,14 @@ fetch('static/json/connection.json')
       let minutes = date.getMinutes()
       minutes = minutes < 10 ? `0${minutes}` : minutes
       date = `${date.toDateString()} - ${hours}:${minutes}`
-      chatbox.innerHTML =
-        `${chatbox.innerHTML}
+      chat.innerHTML =
+        `${chat.innerHTML}
         <div class="connection label label-success">
-            ${author} a rejoint le chat le ${date}
+            ${user} a rejoint le chat le ${date}
         </div>`
     })
 
     socket.on('write', (data) => {
-      if (chatbox.scrollTop === chatbox.scrollHeight) {
-        console.log('On descend !')
-      }
       let date = new Date()
       // Format of time
       let hours = date.getHours()
@@ -129,15 +127,15 @@ fetch('static/json/connection.json')
       seconds = seconds < 10 ? `0${seconds}` : seconds
       date = `[${hours}:${minutes}:${seconds}]`
       // Display
-      chatbox.innerHTML =
-        `${chatbox.innerHTML}
+      chat.innerHTML =
+        `${chat.innerHTML}
         <div class="message">
             <span class="date">${date}</span>
-            <span class="author">${data.author} : </span>
+            <span class="user">${data.user} : </span>
             ${data.message}
         </div>`
-      // Scroll bar bottom position
 
-      chatbox.scrollTop = chatbox.scrollHeight
+      // Scroll bar bottom position
+      chat.scrollTop = chat.scrollHeight
     })
   })
