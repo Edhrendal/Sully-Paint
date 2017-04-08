@@ -52,11 +52,21 @@ footer {
     text-align: center;
 }
 #users_list {
+    color: #5bc0de;
     font-size: 16px;
     font-weight: 700;
     list-style: none;
     padding: 0;
     padding-left: 10px;
+}
+
+.pencil-color {
+    background-color: #000;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
 }
 
 .connection {

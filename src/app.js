@@ -96,7 +96,12 @@ io.sockets.on('connection', (socket) => {
     
     // Check if user is already connected
     if (typeof usersStore[user] === 'undefined') {
-      usersStore[user] = user
+      // Storage
+      usersStore[user] = {
+        name: user
+      }
+
+      // Log
       let date = new Date()
       // Format of time
       let hours = date.getHours()
@@ -107,6 +112,11 @@ io.sockets.on('connection', (socket) => {
       console.log(`${date}: ${user} is connected.`)
 
       io.sockets.emit('connectedToChannel', user)
+    }
+
+    // Store in socket
+    socket.user = {
+      name: user
     }
 
     io.sockets.emit('displayUsersList', usersStore)
@@ -143,6 +153,17 @@ io.sockets.on('connection', (socket) => {
 
   socket.on('stopdrawing', _ => {
     delete socket.lastPoint
+  })
+
+  socket.on('changeUserPencilColor', color => {
+    // Store the color in usersStore
+    usersStore[socket.user.name]['color'] = color
+
+    let user = {
+      name: socket.user.name,
+      color: color
+    }
+    io.sockets.emit('changeUserCircleColor', user)
   })
 })
 
