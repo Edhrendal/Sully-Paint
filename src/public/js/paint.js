@@ -76,6 +76,7 @@ fetch('static/json/connection.json')
     inputColorBrush.addEventListener('change', function () {
       canvas.removeEventListener('mousemove', onmousemove)
       board.strokeStyle = inputColorBrush.value
+      socket.emit('changeUserPencilColor', inputColorBrush.value)
     })
 
     // Width selection
@@ -119,10 +120,22 @@ fetch('static/json/connection.json')
     socket.on('displayUsersList', (usersStore) => {
       usersList.innerHTML = ""
       for (var user in usersStore) {
+        let userColor = typeof usersStore[user].color !== 'undefined'
         usersList.innerHTML =
           `${usersList.innerHTML}
-          <li>${user}</li>`
+          <li id="user_${user}">
+            <span id="color_user_${user}" class="pencil-color"></span>
+            ${user} 
+          </li>`
+
+        if (userColor) {
+          changePencilColor(usersStore[user])
+        }
       }
+    })
+
+    socket.on('changeUserCircleColor', (user) => {
+      changePencilColor(user)
     })
 
     socket.on('write', (data) => {
@@ -148,3 +161,8 @@ fetch('static/json/connection.json')
       chat.scrollTop = chat.scrollHeight
     })
   })
+
+function changePencilColor (user) {
+  let userCircle = document.querySelector(`#color_user_${user.name}`)
+  userCircle.style['background-color'] = user.color
+}
